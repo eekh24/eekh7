@@ -75,13 +75,18 @@
 
                     const referredContainer = document.getElementById('referred-container');
                     referredContainer.innerHTML = ''; // Clear previous content
+                    let i = referredNumbers.length; // Start i from the total number of items
 
-                    referredNumbers.forEach(({ mobile, name }) => {
+                    referredNumbers.slice().reverse().forEach(({ mobile, name }) => {
                         const itemElement = document.createElement('div');
                         itemElement.className = 'referred-item';
-                        itemElement.textContent = `${mobile} : ${name}`;
+
+                        itemElement.textContent = `${i} : ${name}`; // Use i for numbering in descending order
+                        i--; // Decrease i in each iteration
+
                         referredContainer.appendChild(itemElement);
                     });
+
                 } else {
                     alert('No referred numbers found for this mobile number.');
                 }
